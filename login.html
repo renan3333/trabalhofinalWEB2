@@ -50,7 +50,7 @@
 
             <!-- Formulário de Login -->
             <div class="login-form-container">
-                <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
+                <form id="loginForm" class="login-form">
                     <div class="form-header">
                         <h2 id="formTitle">Login do Aluno</h2>
                         <p id="formSubtitle">Entre com suas credenciais para acessar sua conta</p>
@@ -105,22 +105,6 @@
                         <span>ou</span>
                     </div>
 
-                    <!-- Login rápido para demonstração -->
-                    <div class="demo-login" id="demoLogin">
-                        <p><strong>Para demonstração - clique para login rápido:</strong></p>
-                        <div class="demo-buttons">
-                            <button type="button" class="demo-btn student" onclick="quickLogin('student')">
-                                <i class="fas fa-user-graduate"></i> Login como Aluno
-                            </button>
-                            <button type="button" class="demo-btn teacher" onclick="quickLogin('teacher')">
-                                <i class="fas fa-chalkboard-teacher"></i> Login como Professor
-                            </button>
-                            <button type="button" class="demo-btn admin" onclick="quickLogin('admin')">
-                                <i class="fas fa-user-shield"></i> Login como Admin
-                            </button>
-                        </div>
-                    </div>
-
                     <div class="social-login">
                         <button type="button" class="btn-social google">
                             <i class="fab fa-google"></i> Entrar com Google
@@ -136,7 +120,7 @@
                 </form>
 
                 <!-- Formulário de Cadastro (inicialmente oculto) -->
-                <form id="registerForm" class="login-form" style="display: none;" onsubmit="handleRegister(event)">
+                <form id="registerForm" class="login-form" style="display: none;">
                     <div class="form-header">
                         <h2>Criar Nova Conta</h2>
                         <p>Preencha os dados abaixo para se cadastrar</p>
@@ -377,240 +361,18 @@
 
     <script src="script.js"></script>
     <script>
-        // Variável global para o tipo de usuário atual
-        let currentUserType = 'aluno';
-
-        // Usuários do sistema
-        const usuarios = {
-            // Professores
-            'professor@tommusic.com': {
-                senha: 'prof123',
-                tipo: 'professor',
-                nome: 'Anthony Guimarães',
-                redirect: 'mainProf.html'
-            },
-            
-            // Alunos
-            'maria@email.com': {
-                senha: '123456',
-                tipo: 'aluno',
-                nome: 'Maria Oliveira',
-                redirect: 'mainUser.html'
-            },
-            'joao@email.com': {
-                senha: '123456',
-                tipo: 'aluno',
-                nome: 'João Pedro',
-                redirect: 'mainUser.html'
-            },
-            'ana@email.com': {
-                senha: '123456',
-                tipo: 'aluno',
-                nome: 'Ana Costa',
-                redirect: 'mainUser.html'
-            },
-            
-            // Administrador
-            'admin@tommusic.com': {
-                senha: 'admin123',
-                tipo: 'admin',
-                nome: 'Administrador',
-                redirect: 'mainAdm.html'
-            }
-        };
-
-        // Função para alternar entre tabs
-        function switchTab(type) {
-            currentUserType = type;
-            
-            // Atualizar botões das tabs
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Atualizar títulos do formulário
-            const titles = {
-                'aluno': {
-                    title: 'Login do Aluno',
-                    subtitle: 'Acesse sua área de estudos e acompanhe seu progresso'
-                },
-                'professor': {
-                    title: 'Login do Professor',
-                    subtitle: 'Acesse sua área de trabalho e gerencie suas aulas'
-                },
-                'admin': {
-                    title: 'Login do Administrador',
-                    subtitle: 'Painel de controle e administração do sistema'
-                }
-            };
-            
-            document.getElementById('formTitle').textContent = titles[type].title;
-            document.getElementById('formSubtitle').textContent = titles[type].subtitle;
-        }
-
-        // Função para login rápido (demonstração)
-        function quickLogin(type) {
-            const credentials = {
-                'student': { email: 'maria@email.com', password: '123456' },
-                'teacher': { email: 'professor@tommusic.com', password: 'prof123' },
-                'admin': { email: 'admin@tommusic.com', password: 'admin123' }
-            };
-            
-            const cred = credentials[type];
-            document.getElementById('email').value = cred.email;
-            document.getElementById('password').value = cred.password;
-            
-            // Fazer login automaticamente
-            setTimeout(() => {
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-            }, 500);
-        }
-
-        // Função principal de login
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            showLoading('Fazendo login...');
-            
-            // Simular delay de autenticação
-            setTimeout(() => {
-                const usuario = usuarios[email];
-                
-                if (usuario && usuario.senha === password) {
-                    // Login bem-sucedido
-                    sessionStorage.setItem('usuarioLogado', JSON.stringify({
-                        email: email,
-                        nome: usuario.nome,
-                        tipo: usuario.tipo
-                    }));
-                    
-                    hideLoading();
-                    showToast('Login realizado com sucesso!', 'success');
-                    
-                    setTimeout(() => {
-                        window.location.href = usuario.redirect;
-                    }, 1500);
-                    
-                } else {
-                    hideLoading();
-                    showToast('Email ou senha incorretos!', 'error');
-                    
-                    // Efeito visual de erro
-                    document.getElementById('email').style.borderColor = '#dc3545';
-                    document.getElementById('password').style.borderColor = '#dc3545';
-                    
-                    setTimeout(() => {
-                        document.getElementById('email').style.borderColor = '';
-                        document.getElementById('password').style.borderColor = '';
-                    }, 2000);
-                }
-            }, 1500);
-        }
-
-        // Função de registro
-        function handleRegister(event) {
-            event.preventDefault();
-            showLoading('Criando sua conta...');
-            
-            setTimeout(() => {
-                hideLoading();
-                showToast('Conta criada com sucesso! Verifique seu email.', 'success');
-                showLoginForm();
-            }, 2000);
-        }
-
-        // Função para mostrar/ocultar senha
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.getElementById('toggleIcon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-
-        // Funções para alternar entre login e registro
-        function showRegisterForm() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('registerForm').style.display = 'block';
-        }
-
-        function showLoginForm() {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none';
-        }
-
-        // Funções para modal de recuperação de senha
+        // Toda a lógica de login/cadastro (chamadas à API) está em script.js.
+        // Aqui ficam apenas pequenos comportamentos exclusivos desta página.
         function showForgotPassword() {
             document.getElementById('forgotPasswordModal').style.display = 'flex';
         }
 
-        function closeForgotPassword() {
-            document.getElementById('forgotPasswordModal').style.display = 'none';
-        }
-
-        function handleForgotPassword(event) {
-            event.preventDefault();
-            showLoading('Enviando instruções...');
-            
-            setTimeout(() => {
-                hideLoading();
-                closeForgotPassword();
-                showToast('Instruções enviadas para seu email!', 'info');
-            }, 2000);
-        }
-
-        // Função para mostrar loading
-        function showLoading(text = 'Carregando...') {
-            document.getElementById('loadingText').textContent = text;
-            document.getElementById('loadingModal').style.display = 'flex';
-        }
-
-        // Função para ocultar loading
-        function hideLoading() {
-            document.getElementById('loadingModal').style.display = 'none';
-        }
-
-        // Função para mostrar toast
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = `toast show ${type}`;
-            
-            setTimeout(() => {
-                toast.className = 'toast';
-            }, 3000);
-        }
-
-        // Menu mobile
-        document.querySelector('.menu-mobile').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
         // Fechar modal ao clicar fora
         window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) modal.style.display = 'none';
             });
-        }
-
-        // Incluir o script original se existir
-        if (typeof window.originalScript !== 'undefined') {
-            window.originalScript();
-        }
-
-        
+        };
     </script>
 </body>
 </html>
