@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ALUNO
+  PROFESSOR
+  ADMIN
+}
+
+enum LessonStatus {
+  AGENDADA
+  CONCLUIDA
+  CANCELADA
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  phone        String?
+  role         Role     @default(ALUNO)
+  avatarUrl    String?
+  createdAt    DateTime @default(now())
+
+  // 1:N — um aluno / um professor possui várias aulas
+  lessonsAsStudent Lesson[] @relation("StudentLessons")
+  lessonsAsTeacher Lesson[] @relation("TeacherLessons")
+}
+
+model Instrument {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  // 1:N — um instrumento possui várias aulas
+  lessons Lesson[]
+}
+
+model Lesson {
+  id           Int          @id @default(autoincrement())
+  date         String // formato YYYY-MM-DD
+  time         String // formato HH:MM
+  notes        String?
+  status       LessonStatus @default(AGENDADA)
+  createdAt    DateTime     @default(now())
+
+  studentId    Int
+  teacherId    Int
+  instrumentId Int
+
+  student    User       @relation("StudentLessons", fields: [studentId], references: [id], onDelete: Cascade)
+  teacher    User       @relation("TeacherLessons", fields: [teacherId], references: [id], onDelete: Cascade)
+  instrument Instrument @relation(fields: [instrumentId], references: [id], onDelete: Restrict)
+
+  @@index([teacherId, date, time])
+}
