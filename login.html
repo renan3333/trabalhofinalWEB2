@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tom Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo11.png" alt="Logo Tom-Music">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li><a href="pacotes.html"><i class="fas fa-box"></i> Pacotes</a></li>
+                    <li><a href="login.html" class="active"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-mobile">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <div class="login-wrapper">
+            <!-- Seção de Boas-vindas -->
+            <div class="login-welcome">
+                <h1>!</h1>
+                <p></p>
+            </div>
+
+            <!-- Tabs de Login -->
+            <div class="login-tabs">
+                <button class="tab-button active" onclick="switchTab('aluno')">
+                    <i class="fas fa-user-graduate"></i> Sou Aluno
+                </button>
+                <button class="tab-button" onclick="switchTab('professor')">
+                    <i class="fas fa-chalkboard-teacher"></i> Sou Professor
+                </button>
+                <button class="tab-button" onclick="switchTab('admin')">
+                    <i class="fas fa-user-shield"></i> Administrador
+                </button>
+            </div>
+
+            <!-- Formulário de Login -->
+            <div class="login-form-container">
+                <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-header">
+                        <h2 id="formTitle">Login do Aluno</h2>
+                        <p id="formSubtitle">Entre com suas credenciais para acessar sua conta</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> E-mail
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="seu@email.com" 
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Senha
+                        </label>
+                        <div class="password-input">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Digite sua senha" 
+                                required
+                                autocomplete="current-password"
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember"> 
+                            <span>Lembrar-me</span>
+                        </label>
+                        <a href="#" class="forgot-password" onclick="showForgotPassword()">Esqueceu a senha?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+
+                    <div class="divider">
+                        <span>ou</span>
+                    </div>
+
+                    <!-- Login rápido para demonstração -->
+                    <div class="demo-login" id="demoLogin">
+                        <p><strong>Para demonstração - clique para login rápido:</strong></p>
+                        <div class="demo-buttons">
+                            <button type="button" class="demo-btn student" onclick="quickLogin('student')">
+                                <i class="fas fa-user-graduate"></i> Login como Aluno
+                            </button>
+                            <button type="button" class="demo-btn teacher" onclick="quickLogin('teacher')">
+                                <i class="fas fa-chalkboard-teacher"></i> Login como Professor
+                            </button>
+                            <button type="button" class="demo-btn admin" onclick="quickLogin('admin')">
+                                <i class="fas fa-user-shield"></i> Login como Admin
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="social-login">
+                        <button type="button" class="btn-social google">
+                            <i class="fab fa-google"></i> Entrar com Google
+                        </button>
+                        <button type="button" class="btn-social facebook">
+                            <i class="fab fa-facebook-f"></i> Entrar com Facebook
+                        </button>
+                    </div>
+
+                    <div class="form-footer">
+                        <p>Ainda não tem uma conta? <a href="#" onclick="showRegisterForm()">Cadastre-se aqui</a></p>
+                    </div>
+                </form>
+
+                <!-- Formulário de Cadastro (inicialmente oculto) -->
+                <form id="registerForm" class="login-form" style="display: none;" onsubmit="handleRegister(event)">
+                    <div class="form-header">
+                        <h2>Criar Nova Conta</h2>
+                        <p>Preencha os dados abaixo para se cadastrar</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">
+                                <i class="fas fa-user"></i> Nome
+                            </label>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                placeholder="Seu nome" 
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">
+                                <i class="fas fa-user"></i> Sobrenome
+                            </label>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                placeholder="Seu sobrenome" 
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">
+                            <i class="fas fa-envelope"></i> E-mail
+                        </label>
+                        <input 
+                            type="email" 
+                            id="registerEmail" 
+                            name="email" 
+                            placeholder="seu@email.com" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i> Telefone
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="(11) 99999-9999" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword">
+                            <i class="fas fa-lock"></i> Senha
+                        </label>
+                        <input 
+                            type="password" 
+                            id="registerPassword" 
+                            name="password" 
+                            placeholder="Crie uma senha forte" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i> Confirmar Senha
+                        </label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirme sua senha" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instrument">
+                            <i class="fas fa-music"></i> Instrumento de Interesse
+                        </label>
+                        <select id="instrument" name="instrument" required>
+                            <option value="">Selecione um instrumento</option>
+                            <option value="violao">Violão</option>
+                            <option value="piano">Teclado</option>
+                            <option value="bateria">Bateria</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="terms">
+                            <input type="checkbox" name="terms" required> 
+                            <span>Aceito os <a href="#">termos de uso</a> e <a href="#">política de privacidade</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-user-plus"></i> Criar Conta
+                    </button>
+
+                    <div class="form-footer">
+                        <p>Já tem uma conta? <a href="#" onclick="showLoginForm()">Faça login</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Informações Adicionais -->
+            <div class="login-info">
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Login Seguro</h3>
+                    <p>Seus dados estão protegidos com criptografia de ponta</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Suporte 24/7</h3>
+                    <p>Problemas para acessar? Nossa equipe está aqui para ajudar</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Acesso Mobile</h3>
+                    <p>Acesse sua conta de qualquer dispositivo</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Recuperação de Senha -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content modal-small">
+            <span class="close" onclick="closeForgotPassword()">&times;</span>
+            <h2><i class="fas fa-key"></i> Recuperar Senha</h2>
+            <p>Digite seu e-mail para receber as instruções de recuperação</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        placeholder="seu@email.com" 
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> Enviar Instruções
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Loading -->
+    <div id="loadingModal" class="modal" style="display: none;">
+        <div class="modal-content modal-small loading-content">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <p id="loadingText">Fazendo login...</p>
+        </div>
+    </div>
+
+    <!-- Toast de Mensagens -->
+    <div id="toast" class="toast"></div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo11.png" alt="StrumSage">
+                </div>
+                <p>Transformando vidas através da música desde 2022</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/anthony_guimaraes_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/38992262726" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="pacotes.html">Pacotes</a></li>
+                    <li><a href="login.html">Área do Aluno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Nossos Cursos</h3>
+                <ul>
+                    <li><a href="#">Violão</a></li>
+                    <li><a href="#">Teclado</a></li>
+                    <li><a href="#">Bateria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Rio Pardo - 105 A/ Centro</p>
+                <p><i class="fas fa-phone"></i> (38) 992262726</p>
+                <p><i class="fas fa-envelope"></i> guimaraestagima31@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-20h | Sáb: 8h-14h</p>
+            </div>  
+        </div>
+
+        <!-- Parte nova integrada -->
+        <div class="footer-dev">
+            <p>Site desenvolvido por:</p>
+            <ul>
+                <li>
+                    Caio Cesar Oliveira Silva
+                    <a href="https://github.com/CaiaoCesar" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    Helberth Renan Gomes De Sousa
+                    <a href="https://github.com/D3LT7-ops" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tom-Music. Todos os direitos de uso seguem a 
+                <a id="licenca" href="https://github.com/D3LT7-ops/TRABALHO-FINALWEB/blob/main/LICENSE">licença MIT.</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Variável global para o tipo de usuário atual
+        let currentUserType = 'aluno';
+
+        // Usuários do sistema
+        const usuarios = {
+            // Professores
+            'professor@tommusic.com': {
+                senha: 'prof123',
+                tipo: 'professor',
+                nome: 'Anthony Guimarães',
+                redirect: 'mainProf.html'
+            },
+            
+            // Alunos
+            'maria@email.com': {
+                senha: '123456',
+                tipo: 'aluno',
+                nome: 'Maria Oliveira',
+                redirect: 'mainUser.html'
+            },
+            'joao@email.com': {
+                senha: '123456',
+                tipo: 'aluno',
+                nome: 'João Pedro',
+                redirect: 'mainUser.html'
+            },
+            'ana@email.com': {
+                senha: '123456',
+                tipo: 'aluno',
+                nome: 'Ana Costa',
+                redirect: 'mainUser.html'
+            },
+            
+            // Administrador
+            'admin@tommusic.com': {
+                senha: 'admin123',
+                tipo: 'admin',
+                nome: 'Administrador',
+                redirect: 'mainAdm.html'
+            }
+        };
+
+        // Função para alternar entre tabs
+        function switchTab(type) {
+            currentUserType = type;
+            
+            // Atualizar botões das tabs
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Atualizar títulos do formulário
+            const titles = {
+                'aluno': {
+                    title: 'Login do Aluno',
+                    subtitle: 'Acesse sua área de estudos e acompanhe seu progresso'
+                },
+                'professor': {
+                    title: 'Login do Professor',
+                    subtitle: 'Acesse sua área de trabalho e gerencie suas aulas'
+                },
+                'admin': {
+                    title: 'Login do Administrador',
+                    subtitle: 'Painel de controle e administração do sistema'
+                }
+            };
+            
+            document.getElementById('formTitle').textContent = titles[type].title;
+            document.getElementById('formSubtitle').textContent = titles[type].subtitle;
+        }
+
+        // Função para login rápido (demonstração)
+        function quickLogin(type) {
+            const credentials = {
+                'student': { email: 'maria@email.com', password: '123456' },
+                'teacher': { email: 'professor@tommusic.com', password: 'prof123' },
+                'admin': { email: 'admin@tommusic.com', password: 'admin123' }
+            };
+            
+            const cred = credentials[type];
+            document.getElementById('email').value = cred.email;
+            document.getElementById('password').value = cred.password;
+            
+            // Fazer login automaticamente
+            setTimeout(() => {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }, 500);
+        }
+
+        // Função principal de login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            showLoading('Fazendo login...');
+            
+            // Simular delay de autenticação
+            setTimeout(() => {
+                const usuario = usuarios[email];
+                
+                if (usuario && usuario.senha === password) {
+                    // Login bem-sucedido
+                    sessionStorage.setItem('usuarioLogado', JSON.stringify({
+                        email: email,
+                        nome: usuario.nome,
+                        tipo: usuario.tipo
+                    }));
+                    
+                    hideLoading();
+                    showToast('Login realizado com sucesso!', 'success');
+                    
+                    setTimeout(() => {
+                        window.location.href = usuario.redirect;
+                    }, 1500);
+                    
+                } else {
+                    hideLoading();
+                    showToast('Email ou senha incorretos!', 'error');
+                    
+                    // Efeito visual de erro
+                    document.getElementById('email').style.borderColor = '#dc3545';
+                    document.getElementById('password').style.borderColor = '#dc3545';
+                    
+                    setTimeout(() => {
+                        document.getElementById('email').style.borderColor = '';
+                        document.getElementById('password').style.borderColor = '';
+                    }, 2000);
+                }
+            }, 1500);
+        }
+
+        // Função de registro
+        function handleRegister(event) {
+            event.preventDefault();
+            showLoading('Criando sua conta...');
+            
+            setTimeout(() => {
+                hideLoading();
+                showToast('Conta criada com sucesso! Verifique seu email.', 'success');
+                showLoginForm();
+            }, 2000);
+        }
+
+        // Função para mostrar/ocultar senha
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // Funções para alternar entre login e registro
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        }
+
+        // Funções para modal de recuperação de senha
+        function showForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'flex';
+        }
+
+        function closeForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            showLoading('Enviando instruções...');
+            
+            setTimeout(() => {
+                hideLoading();
+                closeForgotPassword();
+                showToast('Instruções enviadas para seu email!', 'info');
+            }, 2000);
+        }
+
+        // Função para mostrar loading
+        function showLoading(text = 'Carregando...') {
+            document.getElementById('loadingText').textContent = text;
+            document.getElementById('loadingModal').style.display = 'flex';
+        }
+
+        // Função para ocultar loading
+        function hideLoading() {
+            document.getElementById('loadingModal').style.display = 'none';
+        }
+
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
+
+        // Menu mobile
+        document.querySelector('.menu-mobile').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Incluir o script original se existir
+        if (typeof window.originalScript !== 'undefined') {
+            window.originalScript();
+        }
+
+        
+    </script>
+</body>
+</html>

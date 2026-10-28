@@ -1,0 +1,16 @@
+# Deploy no Render (Blueprint). O banco PostgreSQL fica no Neon (DATABASE_URL).
+services:
+  - type: web
+    name: tom-music
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npx prisma generate && npx prisma db push && node prisma/seed.js
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true

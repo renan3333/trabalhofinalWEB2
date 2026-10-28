@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Aulas - Tom Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo11.png" alt="Logo Tom-Music">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li><a href="login.html"><i class="fas fa-user"></i> Login</a></li>
+                    <li><a href="gerenciamento.html" class="active"><i class="fas fa-calendar-check"></i> Gerenciar Aulas</a></li>
+                </ul>
+            </nav>
+            <div class="menu-mobile">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="gerenciamento-container">
+        <div class="container">
+            <h1 class="page-title">Gerenciamento de Aulas</h1>
+            
+            <!-- Dashboard de Resumo -->
+            <section class="dashboard-resumo">
+                <div class="card-resumo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Aulas Hoje</h3>
+                    <p class="numero">5</p>
+                </div>
+                <div class="card-resumo">
+                    <i class="fas fa-users"></i>
+                    <h3>Total de Alunos</h3>
+                    <p class="numero">28</p>
+                </div>
+                <div class="card-resumo">
+                    <i class="fas fa-clock"></i>
+                    <h3>Próxima Aula</h3>
+                    <p class="numero">14:30</p>
+                </div>
+                <div class="card-resumo">
+                    <i class="fas fa-music"></i>
+                    <h3>Instrumentos</h3>
+                    <p class="numero">6</p>
+                </div>
+            </section>
+
+            <!-- Seção de Agendamento -->
+            <section class="agendamento-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-plus-circle"></i> Agendar Nova Aula</h2>
+                    <button class="btn-primary" onclick="abrirModalAgendamento()">
+                        <i class="fas fa-plus"></i> Nova Aula
+                    </button>
+                </div>
+
+                <!-- Calendário e Lista de Aulas -->
+                <div class="calendario-container">
+                    <div class="calendario">
+                        <h3>Calendário</h3>
+                        <div id="calendario-widget">
+                            <!-- Calendário será inserido via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="lista-aulas">
+                        <h3>Aulas Agendadas</h3>
+                        <div class="filtros">
+                            <select id="filtro-instrumento">
+                                <option value="">Todos os Instrumentos</option>
+                                <option value="violao">Violão</option>
+                                <option value="piano">Teclado</option>
+                                <option value="bateria">Bateria</option>
+                            </select>
+                            <input type="date" id="filtro-data">
+                        </div>
+                        
+                        <div class="aulas-lista">
+                            <div class="aula-card">
+                                <div class="aula-info">
+                                    <h4>João Silva</h4>
+                                    <p><i class="fas fa-violao"></i> Violão</p>
+                                    <p><i class="fas fa-clock"></i> 14:30 - 15:30</p>
+                                    <p><i class="fas fa-calendar"></i> Segunda, 20/01/2025</p>
+                                </div>
+                                <div class="aula-acoes">
+                                    <button class="btn-editar" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-cancelar" title="Cancelar"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="aula-card">
+                                <div class="aula-info">
+                                    <h4>Maria Santos</h4>
+                                    <p><i class="fas fa-music"></i> Teclado</p>
+                                    <p><i class="fas fa-clock"></i> 16:00 - 17:00</p>
+                                    <p><i class="fas fa-calendar"></i> Segunda, 20/01/2025</p>
+                                </div>
+                                <div class="aula-acoes">
+                                    <button class="btn-editar" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-cancelar" title="Cancelar"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Alunos -->
+            <section class="alunos-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Gerenciar Alunos</h2>
+                    <button class="btn-secondary" onclick="abrirModalAluno()">
+                        <i class="fas fa-user-plus"></i> Adicionar Aluno
+                    </button>
+                </div>
+
+                <div class="tabela-container">
+                    <table class="tabela-alunos">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Instrumento</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>João Silva</td>
+                                <td>Violão</td>
+                                <td>(11) 98765-4321</td>
+                                <td>joao@email.com</td>
+                                <td><span class="badge badge-ativo">Ativo</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maria Santos</td>
+                                <td>Teclado</td>
+                                <td>(11) 91234-5678</td>
+                                <td>maria@email.com</td>
+                                <td><span class="badge badge-ativo">Ativo</span></td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de Agendamento -->
+    <div id="modalAgendamento" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalAgendamento()">&times;</span>
+            <h2>Agendar Nova Aula</h2>
+            <form id="formAgendamento">
+                <div class="form-group">
+                    <label for="aluno">Aluno:</label>
+                    <select id="aluno" required>
+                        <option value="">Selecione um aluno</option>
+                        <option value="1">João Silva</option>
+                        <option value="2">Maria Santos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="instrumento">Instrumento:</label>
+                    <select id="instrumento" required>
+                        <option value="">Selecione um instrumento</option>
+                        <option value="violao">Violão</option>
+                        <option value="teclado">Teclado</option>
+                        <option value="bateria">Bateria</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data">Data:</label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horario">Horário:</label>
+                        <input type="time" id="horario" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="duracao">Duração:</label>
+                    <select id="duracao" required>
+                        <option value="30">30 minutos</option>
+                        <option value="60">1 hora</option>
+                        <option value="90">1 hora e 30 minutos</option>
+                        <option value="120">2 horas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações:</label>
+                    <textarea id="observacoes" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar" onclick="fecharModalAgendamento()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Agendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Aluno -->
+    <div id="modalAluno" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalAluno()">&times;</span>
+            <h2>Adicionar Novo Aluno</h2>
+            <form id="formAluno">
+                <div class="form-group">
+                    <label for="nomeAluno">Nome Completo:</label>
+                    <input type="text" id="nomeAluno" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefoneAluno">Telefone:</label>
+                        <input type="tel" id="telefoneAluno" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAluno">Email:</label>
+                        <input type="email" id="emailAluno" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="instrumentoAluno">Instrumento:</label>
+                    <select id="instrumentoAluno" required>
+                        <option value="">Selecione um instrumento</option>
+                        <option value="violao">Violão</option>
+                        <option value="teclado">Teclado</option>
+                        <option value="bateria">Bateria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="nivelAluno">Nível:</label>
+                    <select id="nivelAluno" required>
+                        <option value="iniciante">Iniciante</option>
+                        <option value="intermediario">Intermediário</option>
+                        <option value="avancado">Avançado</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar" onclick="fecharModalAluno()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo11.png" alt="StrumSage">
+                </div>
+                <p>Transformando vidas através da música desde 2022</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/anthony_guimaraes_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/38992262726" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="pacotes.html">Pacotes</a></li>
+                    <li><a href="login.html">Área do Aluno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Nossos Cursos</h3>
+                <ul>
+                    <li><a href="#">Violão</a></li>
+                    <li><a href="#">Teclado</a></li>
+                    <li><a href="#">Bateria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Rio Pardo - 105 A/ Centro</p>
+                <p><i class="fas fa-phone"></i> (38) 992262726</p>
+                <p><i class="fas fa-envelope"></i> guimaraestagima31@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-20h | Sáb: 8h-14h</p>
+            </div>  
+        </div>
+
+        <!-- Parte nova integrada -->
+        <div class="footer-dev">
+            <p>Site desenvolvido por:</p>
+            <ul>
+                <li>
+                    Caio Cesar Oliveira Silva
+                    <a href="https://github.com/CaiaoCesar" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    Helberth Renan Gomes De Sousa
+                    <a href="https://github.com/D3LT7-ops" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tom-Music. Todos os direitos de uso seguem a 
+                <a id="licenca" href="https://github.com/D3LT7-ops/TRABALHO-FINALWEB/blob/main/LICENSE">licença MIT.</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Área - Tom Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="user-dashboard">
+    <header class="user-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo11.png" alt="Logo Tom-Music">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="mainUser.html" class="active"><i class="fas fa-home"></i> Minha Área</a></li>
+                    <li><a href="#minhas-aulas"><i class="fas fa-calendar"></i> Minhas Aulas</a></li>
+                    <li><a href="pacotes.html"><i class="fas fa-box"></i> Pacotes</a></li>
+                    <li><a href="#progresso"><i class="fas fa-chart-line"></i> Progresso</a></li>
+                    <li><a href="feed.html"><i class="fas fa-newspaper"></i> Feed</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <img src="images/user-avatar.png" alt="Usuário" class="user-avatar">
+                <span>Olá, João!</span>
+                <button class="btn-logout" onclick="window.location.href='index.html'">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+            <div class="menu-mobile">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="user-main">
+        <!-- Banner de Boas-vindas -->
+        <section class="welcome-banner">
+            <div class="container">
+                <div class="welcome-content">
+                    <h1>Bem-vindo de volta, João! 🎵</h1>
+                    <p>Continue sua jornada musical. Você está no caminho certo!</p>
+                    <div class="streak-info">
+                        <i class="fas fa-fire"></i>
+                        <span>15 dias de prática consecutivos!</span>
+                    </div>
+                </div>
+                <div class="welcome-stats">
+                    <div class="stat">
+                        <h3>12</h3>
+                        <p>Aulas Completas</p>
+                    </div>
+                    <div class="stat">
+                        <h3>3h 45min</h3>
+                        <p>Tempo Total</p>
+                    </div>
+                    <div class="stat">
+                        <h3>85%</h3>
+                        <p>Frequência</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Principal -->
+        <section class="user-dashboard-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- Próxima Aula -->
+                    <div class="dashboard-card next-class">
+                        <div class="card-header">
+                            <h2><i class="fas fa-clock"></i> Próxima Aula</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="class-info">
+                                <h3>Aula de Violão - Nível Intermediário</h3>
+                                <p><i class="fas fa-user-tie"></i>Prof. Anthony Guimarães </p>
+                                <p><i class="fas fa-calendar-alt"></i> Quinta-feira, 23/08/2025</p>
+                                <p><i class="fas fa-clock"></i> 15:00 - 16:00</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Sala 3</p>
+                            </div>
+                            <div class="class-actions">
+                                <button class="btn-primary">
+                                    <i class="fas fa-video"></i> Entrar na Aula Online
+                                </button>
+                                <button class="btn-secondary">
+                                    <i class="fas fa-calendar-times"></i> Remarcar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Minhas Aulas -->
+                    <div class="dashboard-card my-classes" id="minhas-aulas">
+                        <div class="card-header">
+                            <h2><i class="fas fa-calendar-check"></i> Minhas Aulas</h2>
+                            <button class="btn-small" onclick="abrirModalAgendarAula()">
+                                <i class="fas fa-plus"></i> Agendar
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="classes-list">
+                                <div class="class-item">
+                                    <div class="class-date">
+                                        <span class="day">25</span>
+                                        <span class="month">JAN</span>
+                                    </div>
+                                    <div class="class-details">
+                                        <h4>Violão - Acordes Avançados</h4>
+                                        <p>Sexta, 16:00 - Prof. Anthony</p>
+                                    </div>
+                                    <div class="class-status">
+                                        <span class="badge badge-agendado">Agendado</span>
+                                    </div>
+                                </div>
+                                <div class="class-item">
+                                    <div class="class-date">
+                                        <span class="day">28</span>
+                                        <span class="month">JAN</span>
+                                    </div>
+                                    <div class="class-details">
+                                        <h4>Violão - Técnicas de Fingerstyle</h4>
+                                        <p>Segunda, 15:00 - Prof. Anthony</p>
+                                    </div>
+                                    <div class="class-status">
+                                        <span class="badge badge-agendado">Agendado</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all-link">Ver todas as aulas →</a>
+                        </div>
+                    </div>
+
+                    <!-- Meu Progresso -->
+                    <div class="dashboard-card progress-card" id="progresso">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-line"></i> Meu Progresso</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Módulo 1: Fundamentos</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Módulo 2: Acordes</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Módulo 3: Ritmos</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div class="achievements">
+                                <h3>Conquistas Recentes</h3>
+                                <div class="achievement-badges">
+                                    <div class="badge-item" title="Primeira Música Completa">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="badge-item" title="7 Dias Consecutivos">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <div class="badge-item" title="10 Aulas Completas">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Materiais de Estudo -->
+                    <div class="dashboard-card materials-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-book"></i> Materiais de Estudo</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="materials-list">
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Apostila - Acordes Básicos.pdf</span>
+                                </a>
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-video"></i>
+                                    <span>Vídeo - Técnica de Dedilhado</span>
+                                </a>
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>Partitura - Música do Mês</span>
+                                </a>
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-headphones"></i>
+                                    <span>Áudio - Exercícios Rítmicos</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plano Atual -->
+                    <div class="dashboard-card plan-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-crown"></i> Meu Plano</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="plan-info">
+                                <h3>Plano Premium</h3>
+                                <p>4 aulas por mês</p>
+                                <div class="plan-usage">
+                                    <span>Aulas utilizadas este mês:</span>
+                                    <div class="usage-bar">
+                                        <div class="usage-fill" style="width: 50%"></div>
+                                    </div>
+                                    <span class="usage-text">2 de 4 aulas</span>
+                                </div>
+                                <button class="btn-outline" onclick="window.location.href='pacotes.html'">
+                                    <i class="fas fa-arrow-up"></i> Upgrade do Plano
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comunicados -->
+                    <div class="dashboard-card announcements-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-bullhorn"></i> Avisos e Eventos</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="announcement-item">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>Recital de Alunos - Fevereiro</h4>
+                                    <p>Participe do nosso recital mensal! Inscrições abertas.</p>
+                                    <small>Há 2 dias</small>
+                                </div>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>Promoção de Verão</h4>
+                                    <p>20% de desconto em pacotes anuais. Aproveite!</p>
+                                    <small>Há 5 dias</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vídeos dos Professores -->
+        <section class="teachers-videos">
+            <div class="container">
+                <h2 class="section-title">Conheça Nossos Professores</h2>
+                <div class="videos-carousel">
+                    <div class="video-slide">
+                        <video controls poster="images/thumb-violao.jpg">
+                            <source src="video/violao.mp4" type="video/mp4">
+                        </video>
+                        <h3>Prof. Anthony - Violão</h3>
+                    </div>
+                    <div class="video-slide">
+                        <video controls poster="images/thumb-teclado.jpg">
+                            <source src="video/teclado.mp4" type="video/mp4">
+                        </video>
+                        <h3>Prof. Anthony - Teclado</h3>
+                    </div>
+                    <div class="video-slide">
+                        <video controls poster="images/thumb-bateria.jpg">
+                            <source src="video/bateria.mp4" type="video/mp4">
+                        </video>
+                        <h3>Prof. Anthony - Bateria</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Agendar Aula -->
+    <div id="modalAgendarAula" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalAgendarAula()">&times;</span>
+            <h2>Agendar Nova Aula</h2>
+            <form id="formAgendarAula">
+                <div class="form-group">
+                    <label for="tipoAula">Tipo de Aula:</label>
+                    <select id="tipoAula" required>
+                        <option value="">Selecione</option>
+                        <option value="violao">Violão</option>
+                        <option value="piano">Teclado</option>
+                        <option value="bateria">Bateria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="professor">Professor:</label>
+                    <select id="professor" required>
+                        <option value="">Selecione o instrumento primeiro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dataAula">Data:</label>
+                    <input type="date" id="dataAula" required>
+                </div>
+                <div class="form-group">
+                    <label for="horarioAula">Horários Disponíveis:</label>
+                    <div class="time-slots">
+                        <button type="button" class="time-slot">14:00</button>
+                        <button type="button" class="time-slot">15:00</button>
+                        <button type="button" class="time-slot">16:00</button>
+                        <button type="button" class="time-slot">17:00</button>
+                        <button type="button" class="time-slot">18:00</button>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="fecharModalAgendarAula()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Confirmar Agendamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo11.png" alt="StrumSage">
+                </div>
+                <p>Transformando vidas através da música desde 2022</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/anthony_guimaraes_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/38992262726" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="pacotes.html">Pacotes</a></li>
+                    <li><a href="login.html">Área do Aluno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Nossos Cursos</h3>
+                <ul>
+                    <li><a href="#">Violão</a></li>
+                    <li><a href="#">Teclado</a></li>
+                    <li><a href="#">Bateria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Rio Pardo - 105 A/ Centro</p>
+                <p><i class="fas fa-phone"></i> (38) 992262726</p>
+                <p><i class="fas fa-envelope"></i> guimaraestagima31@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-20h | Sáb: 8h-14h</p>
+            </div>  
+        </div>
+
+        <!-- Parte nova integrada -->
+        <div class="footer-dev">
+            <p>Site desenvolvido por:</p>
+            <ul>
+                <li>
+                    Caio Cesar Oliveira Silva
+                    <a href="https://github.com/CaiaoCesar" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    Helberth Renan Gomes De Sousa
+                    <a href="https://github.com/D3LT7-ops" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tom-Music. Todos os direitos de uso seguem a 
+                <a id="licenca" href="https://github.com/D3LT7-ops/TRABALHO-FINALWEB/blob/main/LICENSE">licença MIT.</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

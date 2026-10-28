@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacotes e Planos - Tom Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo11.png" alt="Logo Tom-Music">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li><a href="pacotes.html" class="active"><i class="fas fa-box"></i> Pacotes</a></li>
+                    <li><a href="login.html"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-mobile">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Pacotes -->
+    <section class="pacotes-hero">
+        <div class="container">
+            <h1></h1>
+            <p></p>
+            
+            <!-- Filtros de Instrumento -->
+            <div class="filtros-instrumentos">
+                <button class="filtro-btn active" onclick="filtrarPacotes('todos')">
+                    <i class="fas fa-music"></i> Todos
+                </button>
+                <button class="filtro-btn" onclick="filtrarPacotes('violao')">
+                    <i class="fas fa-guitar"></i> Violão
+                </button>
+                <button class="filtro-btn" onclick="filtrarPacotes('piano')">
+                    <i class="fas fa-keyboard"></i>Teclado
+                </button>
+                <button class="filtro-btn" onclick="filtrarPacotes('bateria')">
+                    <i class="fas fa-drum"></i> Bateria
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Pacotes -->
+    <section class="pacotes-section">
+        <div class="container">
+            <!-- Planos Principais -->
+            <div class="planos-principais">
+                <h2 class="section-title">Planos Mensais</h2>
+                <div class="planos-grid">
+                    <!-- Plano Básico -->
+                    <div class="plano-card basico" data-instrumento="todos">
+                        <div class="plano-header">
+                            <h3>Plano Básico</h3>
+                            <div class="plano-preco">
+                                <span class="moeda">R$</span>
+                                <span class="valor">79,90</span>
+                                <span class="periodo">/mês</span>
+                            </div>
+                        </div>
+                        <div class="plano-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 4 aulas por mês (1 por semana)</li>
+                                <li><i class="fas fa-check"></i> Aulas de 50 minutos</li>
+                                <li><i class="fas fa-check"></i> Material didático básico</li>
+                                <li><i class="fas fa-check"></i> Suporte via email</li>
+                                <li><i class="fas fa-check"></i> Acesso ao app de prática</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Aulas extras</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Workshops exclusivos</li>
+                            </ul>
+                        </div>
+                        <button class="btn-plano btn-outline">Escolher Plano</button>
+                    </div>
+
+                    <!-- Plano Popular -->
+                    <div class="plano-card popular" data-instrumento="todos">
+                        <div class="plano-badge">Mais Popular</div>
+                        <div class="plano-header">
+                            <h3>Plano Premium</h3>
+                            <div class="plano-preco">
+                                <span class="moeda">R$</span>
+                                <span class="valor">149,90</span>
+                                <span class="periodo">/mês</span>
+                            </div>
+                        </div>
+                        <div class="plano-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 8 aulas por mês (2 por semana)</li>
+                                <li><i class="fas fa-check"></i> Aulas de 50 minutos</li>
+                                <li><i class="fas fa-check"></i> Material didático completo</li>
+                                <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                                <li><i class="fas fa-check"></i> Acesso ao app de prática</li>
+                                <li><i class="fas fa-check"></i> 1 aula extra por mês</li>
+                                <li><i class="fas fa-check"></i> Workshops mensais</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Aulas em grupo ilimitadas</li>
+                            </ul>
+                        </div>
+                        <button class="btn-plano btn-primary">Escolher Plano</button>
+                    </div>
+
+                    <!-- Plano Pro -->
+                    <div class="plano-card pro" data-instrumento="todos">
+                        <div class="plano-header">
+                            <h3>Plano Pro</h3>
+                            <div class="plano-preco">
+                                <span class="moeda">R$</span>
+                                <span class="valor">399</span>
+                                <span class="periodo">/mês</span>
+                            </div>
+                        </div>
+                        <div class="plano-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 12 aulas por mês (3 por semana)</li>
+                                <li><i class="fas fa-check"></i> Aulas de 60 minutos</li>
+                                <li><i class="fas fa-check"></i> Material didático premium</li>
+                                <li><i class="fas fa-check"></i> Suporte VIP 24/7</li>
+                                <li><i class="fas fa-check"></i> Acesso ao app de prática</li>
+                                <li><i class="fas fa-check"></i> Aulas extras ilimitadas</li>
+                                <li><i class="fas fa-check"></i> Todos os workshops</li>
+                                <li><i class="fas fa-check"></i> Aulas em grupo ilimitadas</li>
+                                <li><i class="fas fa-check"></i> Gravação em estúdio</li>
+                            </ul>
+                        </div>
+                        <button class="btn-plano btn-outline">Escolher Plano</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pacotes Especiais por Instrumento -->
+            <div class="pacotes-especiais">
+                <h2 class="section-title">Pacotes Especializados</h2>
+                
+                <div class="pacotes-instrumentos">
+                    <!-- Pacote Violão -->
+                    <div class="pacote-card" data-instrumento="violao">
+                        <div class="pacote-image">
+                            <img src="images/pacote-violao.jpg" alt="Pacote Violão">
+                            <div class="pacote-overlay">
+                                <i class="fas fa-guitar"></i>
+                            </div>
+                        </div>
+                        <div class="pacote-content">
+                            <h3>Pacote Completo Violão</h3>
+                            <p>Do básico ao avançado em 6 meses</p>
+                            <ul class="pacote-includes">
+                                <li><i class="fas fa-check-circle"></i> 48 aulas programadas</li>
+                                <li><i class="fas fa-check-circle"></i> Material exclusivo</li>
+                                <li><i class="fas fa-check-circle"></i> Certificado de conclusão</li>
+                            </ul>
+                            <div class="pacote-price">
+                                <span class="price-old">R$ 1.794</span>
+                                <span class="price-new">R$ 1.299</span>
+                                <span class="price-info">à vista ou 6x de R$ 216,50</span>
+                            </div>
+                            <button class="btn-primary">Ver Detalhes</button>
+                        </div>
+                    </div>
+
+                    <!-- Pacote Guitarra -->
+                    <div class="pacote-card" data-instrumento="guitarra">
+                        <div class="pacote-image">
+                            <img src="images/pacote-guitarra.jpg" alt="Pacote Guitarra">
+                            <div class="pacote-overlay">
+                                <i class="fas fa-guitar"></i>
+                            </div>
+                        </div>
+                        <div class="pacote-content">
+                            <h3>Pacote Rock & Blues Guitarra</h3>
+                            <p>Domine os solos e riffs clássicos</p>
+                            <ul class="pacote-includes">
+                                <li><i class="fas fa-check-circle"></i> 36 aulas especializadas</li>
+                                <li><i class="fas fa-check-circle"></i> Backing tracks exclusivas</li>
+                                <li><i class="fas fa-check-circle"></i> Masterclass com guitarrista</li>
+                            </ul>
+                            <div class="pacote-price">
+                                <span class="price-old">R$ 1.494</span>
+                                <span class="price-new">R$ 999</span>
+                                <span class="price-info">à vista ou 6x de R$ 166,50</span>
+                            </div>
+                            <button class="btn-primary">Ver Detalhes</button>
+                        </div>
+                    </div>
+
+                    <!-- Pacote Piano -->
+                    <div class="pacote-card" data-instrumento="piano">
+                        <div class="pacote-image">
+                            <img src="images/pacote-piano.jpg" alt="Pacote Piano">
+                            <div class="pacote-overlay">
+                                <i class="fas fa-keyboard"></i>
+                            </div>
+                        </div>
+                        <div class="pacote-content">
+                            <h3>Pacote Piano Clássico</h3>
+                            <p>Técnica e repertório erudito</p>
+                            <ul class="pacote-includes">
+                                <li><i class="fas fa-check-circle"></i> 60 aulas progressivas</li>
+                                <li><i class="fas fa-check-circle"></i> Partituras clássicas</li>
+                                <li><i class="fas fa-check-circle"></i> Recital de formatura</li>
+                            </ul>
+                            <div class="pacote-price">
+                                <span class="price-old">R$ 2.394</span>
+                                <span class="price-new">R$ 1.799</span>
+                                <span class="price-info">à vista ou 8x de R$ 224,88</span>
+                            </div>
+                            <button class="btn-primary">Ver Detalhes</button>
+                        </div>
+                    </div>
+
+                    <!-- Pacote Bateria -->
+                    <div class="pacote-card" data-instrumento="bateria">
+                        <div class="pacote-image">
+                            <img src="images/pacote-bateria.jpg" alt="Pacote Bateria">
+                            <div class="pacote-overlay">
+                                <i class="fas fa-drum"></i>
+                            </div>
+                        </div>
+                        <div class="pacote-content">
+                            <h3>Pacote Bateria Total</h3>
+                            <p>Ritmos do mundo todo</p>
+                            <ul class="pacote-includes">
+                                <li><i class="fas fa-check-circle"></i> 40 aulas dinâmicas</li>
+                                <li><i class="fas fa-check-circle"></i> Kit de baquetas pro</li>
+                                <li><i class="fas fa-check-circle"></i> Jam sessions mensais</li>
+                            </ul>
+                            <div class="pacote-price">
+                                <span class="price-old">R$ 1.596</span>
+                                <span class="price-new">R$ 1.199</span>
+                                <span class="price-info">à vista ou 6x de R$ 199,83</span>
+                            </div>
+                            <button class="btn-primary">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combos e Ofertas -->
+            <div class="combos-section">
+                <h2 class="section-title">Combos Especiais</h2>
+                <div class="combos-grid">
+                    <div class="combo-card">
+                        <div class="combo-badge">Economia de 25%</div>
+                        <h3>Combo Família</h3>
+                        <p>Plano para 3 pessoas da mesma família</p>
+                        <ul>
+                            <li><i class="fas fa-users"></i> 3 alunos</li>
+                            <li><i class="fas fa-calendar"></i> 4 aulas/mês cada</li>
+                            <li><i class="fas fa-percent"></i> 25% de desconto</li>
+                        </ul>
+                        <div class="combo-price">
+                            <span>R$ 336/mês</span>
+                            <small>R$ 112 por pessoa</small>
+                        </div>
+                        <button class="btn-secondary">Saiba Mais</button>
+                    </div>
+
+                    <div class="combo-card">
+                        <div class="combo-badge">Mais Vendido</div>
+                        <h3>Combo Multi-Instrumentos</h3>
+                        <p>Aprenda 2 instrumentos pelo preço de 1,5</p>
+                        <ul>
+                            <li><i class="fas fa-guitar"></i> 2 instrumentos</li>
+                            <li><i class="fas fa-calendar"></i> 6 aulas/mês total</li>
+                            <li><i class="fas fa-star"></i> Flexibilidade total</li>
+                        </ul>
+                        <div class="combo-price">
+                            <span>R$ 374/mês</span>
+                            <small>Economia de R$ 124</small>
+                        </div>
+                        <button class="btn-secondary">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefícios -->
+            <div class="beneficios-section">
+                <h2 class="section-title">Por que escolher nossos pacotes?</h2>
+                <div class="beneficios-grid">
+                    <div class="beneficio">
+                        <i class="fas fa-medal"></i>
+                        <h3>Garantia de Satisfação</h3>
+                        <p>30 dias para experimentar sem compromisso</p>
+                    </div>
+                    <div class="beneficio">
+                        <i class="fas fa-sync"></i>
+                        <h3>Troca de Plano</h3>
+                        <p>Mude seu plano a qualquer momento</p>
+                    </div>
+                    <div class="beneficio">
+                        <i class="fas fa-gift"></i>
+                        <h3>Bônus Exclusivos</h3>
+                        <p>Materiais e workshops inclusos</p>
+                    </div>
+                    <div class="beneficio">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Pagamento Seguro</h3>
+                        <p>Várias formas de pagamento</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Posso cancelar meu plano a qualquer momento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Todos os nossos planos são sem fidelidade. Você pode cancelar a qualquer momento sem multas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>As aulas não utilizadas acumulam para o próximo mês?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nos planos Premium e Pro, você pode acumular até 2 aulas para o mês seguinte. No plano Básico, as aulas não acumulam.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Preciso ter meu próprio instrumento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Recomendamos ter seu instrumento para praticar em casa, mas disponibilizamos instrumentos para uso durante as aulas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-pacotes">
+        <div class="container">
+            <h2>Ainda tem dúvidas sobre qual plano escolher?</h2>
+            <p>Nossa equipe está pronta para ajudar você a encontrar o plano perfeito!</p>
+            <div class="cta-buttons">
+                <button class="btn-primary btn-large" onclick="abrirChat()">
+                    <i class="fas fa-comments"></i> Falar com Consultor
+                </button>
+                <a href="login.html" class="btn-secondary btn-large">
+                    <i class="fas fa-calendar-check"></i> Agendar Aula Experimental
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo11.png" alt="StrumSage">
+                </div>
+                <p>Transformando vidas através da música desde 2022</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/anthony_guimaraes_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/38992262726" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="pacotes.html">Pacotes</a></li>
+                    <li><a href="login.html">Área do Aluno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Nossos Cursos</h3>
+                <ul>
+                    <li><a href="#">Violão</a></li>
+                    <li><a href="#">Teclado</a></li>
+                    <li><a href="#">Bateria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Rio Pardo - 105 A/ Centro</p>
+                <p><i class="fas fa-phone"></i> (38) 992262726</p>
+                <p><i class="fas fa-envelope"></i> guimaraestagima31@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-20h | Sáb: 8h-14h</p>
+            </div>  
+        </div>
+
+        <!-- Parte nova integrada -->
+        <div class="footer-dev">
+            <p>Site desenvolvido por:</p>
+            <ul>
+                <li>
+                    Caio Cesar Oliveira Silva
+                    <a href="https://github.com/CaiaoCesar" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    Helberth Renan Gomes De Sousa
+                    <a href="https://github.com/D3LT7-ops" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tom-Music. Todos os direitos de uso seguem a 
+                <a id="licenca" href="https://github.com/D3LT7-ops/TRABALHO-FINALWEB/blob/main/LICENSE">licença MIT.</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
